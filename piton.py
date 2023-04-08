@@ -102,55 +102,44 @@ def scan_card():
             wb.save('data.xlsx')
             gedung.config(text=f"{lokasi}")
             nama.config(text=f"Nama                     :  {name}")
-            # nim.config(text=f"NIM                        :     {nim}")
+            nim.config(text=f"NIM                        :     {nim}")
             status.config(text=f"Status Kehadiran :     {kehadiran}" )
+            mata_kuliahh.config(text=f"{mata_kuliah}")
+            kode_kelass.config(text=f"{kode_kelas}")
 
         else:
             print(f'Data not found! {data}')
-            
-# gedung = None
-# nama = None
-# status = None
 
+    root.after(1000,scan_card)
 
-# def create_widget() :
-#     global gedung
-#     global nama
-#     global status
-#     global app
+# Create GUI
+root = tk.Tk()
+root.title("Mesin Absensi dan Rekap Kehadiran (MARK)")
 
-app = ttk.Window()
-app.title("Mesin Absensi dan Rekap Kehadiran (MARK)")
-background = ttk.PhotoImage(file=r"itboy.png")
-canvas = ttk.Canvas(app, width=background.width(), height=background.height())
-canvas.create_image(0, 0, image=background, anchor='nw')
-canvas.pack()
-gedung = ttk.Label(canvas, text="", font=("Helvetica", 40, "bold"))
-gedung.pack()
-matkul = ttk.Label(canvas, text="", font=("Helvetica", 40, "bold"))
-matkul.pack()
-kelas = ttk.Label(canvas, text="", font=("Helvetica", 40, "bold"))
-kelas.pack()
-nama = ttk.Label(canvas, text="", font=("Helvetica", 20, "bold"))
-nama.pack()
-# nim = ttk.Label(canvas, text="", font=("Helvetica", 20, "bold"))
-# nim.pack()
-status = ttk.Label(canvas, text="", font=("Helvetica", 20, "bold"))
-status.pack()
+# Set background image
+bg_image = tk.PhotoImage(file="itboy.png")
+bg_label = tk.Label(root, image=bg_image)
+bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-canvas.create_window(720, 100, window = gedung)
-canvas.create_window(720, 200, window = matkul)
-canvas.create_window(720, 300, window = kelas)
-canvas.create_window(350, 600, window = nama)
-# canvas.create_window(350, 650, window = nim)
-canvas.create_window(350, 700, window = status)
+# Create labels to display attendance data
+nama = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
+nama.place(x=350, y=150)
 
+nim = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
+nim.place(x=350, y=190)
 
-app.after(1000,scan_card())
-# canvas.create_window(250, 650, window = tombol_jadwal)
-# canvas.create_window(1110, 650, window = tombol_peserta_kelas)
+status = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
+status.place(x=350, y=230)
 
-app.mainloop()
+gedung = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
+gedung.place(x=350, y=270)
 
+mata_kuliahh = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
+mata_kuliahh.place(x=350, y=310)
 
-    
+kode_kelass = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
+kode_kelass.place(x=350, y=350)
+
+root.after(2000,scan_card)
+
+root.mainloop()
