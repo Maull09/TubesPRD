@@ -1,9 +1,8 @@
 import openpyxl
 import serial
 import datetime
-import time
 import tkinter as tk
-import ttkbootstrap as ttk
+
 
 wb = openpyxl.load_workbook('data.xlsx')
 mahasiswa_ws = wb['Mahasiswa']
@@ -11,7 +10,7 @@ kelas_ws = wb['Kelas']
 kehadiran_ws = None
 
 
-ser = serial.Serial('COM7', 9600) # sesuaikan dengan port serial pada komputer Anda
+ser = serial.Serial('COM10', 9600) # sesuaikan dengan port serial pada komputer Anda
 last_scan = None
 
 
@@ -24,7 +23,6 @@ def get_current_kelas():
     # Check if there is a class scheduled at the current time and date
     for row in kelas_ws.iter_rows(min_row=2, values_only=True):
         start_time_str = row[5].strftime('%H:%M:%S')
-        start_time = datetime.datetime.strptime(start_time_str, '%H:%M:%S')
         end_time_str = row[6].strftime('%H:%M:%S')
         date_class_str = row[7].strftime('%d-%m-%Y')
 
@@ -101,9 +99,9 @@ def scan_card():
             kehadiran_ws.append([f'{current_date} {current_time}', name, nim, data, kehadiran, mata_kuliah, kode_mata_kuliah, kode_kelas, lokasi, dosen])
             wb.save('data.xlsx')
             gedung.config(text=f"{lokasi}")
-            nama.config(text=f"Nama                     :  {name}")
-            nim.config(text=f"NIM                        :     {nim}")
-            status.config(text=f"Status Kehadiran :     {kehadiran}" )
+            nama.config(text=f"Nama                      : {name}")
+            nimm.config(text=f"NIM                         : {nim}")
+            status.config(text=f"Status Kehadiran    : {kehadiran}" )
             mata_kuliahh.config(text=f"{mata_kuliah}")
             kode_kelass.config(text=f"{kode_kelas}")
 
@@ -115,6 +113,7 @@ def scan_card():
 # Create GUI
 root = tk.Tk()
 root.title("Mesin Absensi dan Rekap Kehadiran (MARK)")
+root.geometry("1920x1080")
 
 # Set background image
 bg_image = tk.PhotoImage(file="itboy.png")
@@ -122,23 +121,23 @@ bg_label = tk.Label(root, image=bg_image)
 bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 # Create labels to display attendance data
-nama = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
-nama.place(x=350, y=150)
+nama = tk.Label(root, text="Nama : Mohamad Maulana Firdaus Ramadhan", font=("Helvetica", 18), bg="#ffffff")
+nama.place(x=300, y=600)
 
-nim = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
-nim.place(x=350, y=190)
+nimm = tk.Label(root, text="NIM    : 19622267", font=("Helvetica", 18), bg="#ffffff")
+nimm.place(x=300, y=650)
 
-status = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
-status.place(x=350, y=230)
+status = tk.Label(root, text="Status: Hadir", font=("Helvetica", 18), bg="#ffffff")
+status.place(x=300, y=700)
 
-gedung = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
-gedung.place(x=350, y=270)
+gedung = tk.Label(root, text="K2. 9653", font=("Helvetica", 24), bg="#ffffff")
+gedung.place(x=728, y=100)
 
-mata_kuliahh = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
-mata_kuliahh.place(x=350, y=310)
+mata_kuliahh = tk.Label(root, text="Kalkulus", font=("Helvetica", 20), bg="#ffffff")
+mata_kuliahh.place(x=742, y=150)
 
-kode_kelass = tk.Label(root, text="", font=("Helvetica", 18), bg="#ffffff")
-kode_kelass.place(x=350, y=350)
+kode_kelass = tk.Label(root, text="K-51", font=("Helvetica", 20), bg="#ffffff")
+kode_kelass.place(x=764, y=200)
 
 root.after(2000,scan_card)
 
