@@ -1,7 +1,6 @@
 import tkinter as tk
 import ttkbootstrap as ttk
 
-
 app = ttk.Window()
 style = ttk.Style()
 style.configure('TombolMain.TButton', font=('Futura', 30), foreground='white', background='#2596be', padding=10,
@@ -14,7 +13,7 @@ def klik_tombol_peserta_kelas():
     print("PESERTA KELAS")
 app.title("Mesin Absensi dan Rekap Kehadiran (MARK)")
 
-background = ttk.PhotoImage(file=r"C:\Users\Qk\Documents\College\03. Introduction to Engineering and Design\Big Project\Tugas-Besar-PRD-STEI-2023\itboy.png")
+background = ttk.PhotoImage(file=r"itboy.png")
 canvas = ttk.Canvas(app, width=background.width(), height=background.height())
 canvas.create_image(0, 0, image=background, anchor='nw')
 canvas.pack()
@@ -22,7 +21,7 @@ canvas.pack()
 gedung = ttk.Label(canvas, text="K2.9654", font=("Helvetica", 40, "bold"))
 matkul = ttk.Label(canvas, text="Pengantar Rekaya dan Desain", font=("Helvetica", 40, "bold"))
 kelas = ttk.Label(canvas, text="K-69", font=("Helvetica", 40, "bold"))
-nama = ttk.Label(canvas, text="Nama                     : ", font=("Helvetica", 20, "bold"))
+nama = ttk.Label(canvas, text=f"Nama                     :  ", font=("Helvetica", 20, "bold"))
 nim = ttk.Label(canvas, text="NIM                        : ", font=("Helvetica", 20, "bold"))
 status = ttk.Label(canvas, text="Status Kehadiran : ", font=("Helvetica", 20, "bold"))
 tombol_jadwal = ttk.Button(canvas, text="Jadwal", command=klik_tombol_jadwal(), style="TombolMain.TButton")
