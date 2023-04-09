@@ -122,13 +122,13 @@ bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 # Create labels to display attendance data
 nama = tk.Label(root, text="Nama : Mohamad Maulana Firdaus Ramadhan", font=("Helvetica", 18), bg="#ffffff")
-nama.place(x=300, y=600)
+nama.place(x=400, y=600)
 
 nimm = tk.Label(root, text="NIM    : 19622267", font=("Helvetica", 18), bg="#ffffff")
-nimm.place(x=300, y=650)
+nimm.place(x=400, y=650)
 
 status = tk.Label(root, text="Status: Hadir", font=("Helvetica", 18), bg="#ffffff")
-status.place(x=300, y=700)
+status.place(x=400, y=700)
 
 gedung = tk.Label(root, text="K2. 9653", font=("Helvetica", 24), bg="#ffffff")
 gedung.place(x=728, y=100)
